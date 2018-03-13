@@ -13,7 +13,7 @@ public class MyDouble extends MyNumber{
 	}
 	
 	@Override
-	double getValue() {
+	public double getValue() {
 		return value;
 	}
 
