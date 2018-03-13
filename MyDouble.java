@@ -6,7 +6,7 @@ public class MyDouble extends MyNumber{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private double value;
+	private final double value;
 	
 	public MyDouble(double val) {
 		value = val;
