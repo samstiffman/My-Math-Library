@@ -316,45 +316,4 @@ class Matrix{
 		}
 		
 	}
-	public String characteristicPolynomial() {
-		try {
-			if(rows != columns) {
-				String message = String.format("Check the dimensions of your Matrices "
-						+ "%d x %d and %d x %d ", rows, columns);
-				throw new BadDimmesionsException(message);
-			}
-			ArrayList<MyInteger> coefficients = new ArrayList<>(rows);
-			
-			
-			
-			
-			return "";
-		} catch (BadDimmesionsException e) {
-			e.printStackTrace();
-			return "";
-		}
-	}
-	/**
-	 * Sums all the values in the positive axis
-	 * @return
-	 */
-	private int positiveAxis() {
-		int sum=0;
-		for(int i=0; i<rows; i++) {
-			sum += matrix[i][i];
-		}
-		return sum;
-	}
-	/**
-	 * Sums all the values in the negative axis
-	 * @return
-	 */
-	private int negativeAxis() {
-		int sum=0;
-		for(int i=0; i<rows; i++) {
-			
-		}
-		return -sum;
-	}
-
 }
