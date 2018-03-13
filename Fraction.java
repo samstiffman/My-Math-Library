@@ -8,16 +8,20 @@ class Fraction extends MyNumber{
 	
 	private int numerator;
 	private int denominator;
-	private boolean negative;
 
 	public Fraction(int num, int denom) {
-		numerator = Math.abs(num);
-		denominator = Math.abs(denom);
+		int sign;
 		if(num < 0 ^ denom < 0)
-			negative = true;
+			sign = -1;
+		else
+			sign = 1;
+		numerator = sign*Math.abs(num);
+		denominator = Math.abs(denom);
 		reduce();
 	}
-	
+	/**
+	 * Reduces the fraction used when a new fraction is made
+	 */
 	private void reduce() {
 		if(numerator%denominator == 0) {
 			numerator /= denominator;
@@ -34,25 +38,19 @@ class Fraction extends MyNumber{
 	}
 	public Fraction multiplyF(Fraction a) {
 		Fraction newFraction = new Fraction(numerator * a.numerator, denominator * a.denominator);
-		newFraction.negative = ((a.negative ^ negative)? true: false);
 		return newFraction;
 	}
 	public Fraction divideF(Fraction a) {
 		Fraction newFraction = new Fraction(numerator * a.denominator, denominator * a.numerator);
-		newFraction.negative = ((a.negative ^ negative)? true: false);
 		return newFraction;
 	}
 	public Fraction addF(Fraction a) {
 		int newNum;
 		int newDenom;
-		if(negative  ^ a.negative) {
-			newNum = (denominator * a.numerator) - (numerator * a.denominator);
-			newDenom = denominator * a.denominator;
-		}
-		else {
-			newNum = (denominator * a.numerator) + (numerator * a.denominator);
-			newDenom = denominator * a.denominator;
-		}
+		
+		newNum = (denominator * a.numerator) + (numerator * a.denominator);
+		newDenom = denominator * a.denominator;
+		
 		Fraction newFraction = new Fraction(newNum, newDenom);
 		
 		//The key here is that because we rely on the reduce method when making a new fraction
@@ -62,15 +60,8 @@ class Fraction extends MyNumber{
 	public Fraction subtractF(Fraction a) {
 		int newNum;
 		int newDenom;
-		a.negative = !a.negative;
-		if(negative  ^ a.negative) {
-			newNum = (denominator * a.numerator) - (numerator * a.denominator);
-			newDenom = denominator * a.denominator;
-		}
-		else {
-			newNum = (denominator * a.numerator) + (numerator * a.denominator);
-			newDenom = denominator * a.denominator;
-		}
+		newNum =  (numerator * a.denominator) - (denominator * a.numerator);
+		newDenom = denominator * a.denominator;
 		Fraction newFraction = new Fraction(newNum, newDenom);
 		
 		//The key here is that because we rely on the reduce method when making a new fraction
@@ -78,11 +69,10 @@ class Fraction extends MyNumber{
 		return newFraction;
 	}
 
-
 	public double getValue() {
-		return ((negative)?-1:1) * (numerator/denominator);
+		return numerator/denominator;
 	}
 	public String toString() {
-		return  ((negative)? "-": "")+ numerator + "/" + denominator;
+		return  numerator + "/" + denominator;
 	}
 }
