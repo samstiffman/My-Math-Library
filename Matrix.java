@@ -9,16 +9,11 @@ class Matrix{
 	final int rows;
 	final int columns;
 	final static DecimalFormat FORMAT = new DecimalFormat("0.#");
+	
 	/**
-	 * Blank constructor makes a rows x columns matrix filled with 0's
-	 * @param rows
-	 * @param columns
+	 * Matrix constructor using 2d array
+	 * @param 2d array of doubles that becomes the matrix
 	 */
-	public Matrix(int rows, int columns) {
-		matrix = new double[rows][columns];
-		this.columns = columns;
-		this.rows = rows;
-	}
 	public Matrix(double[][] matrix) {
 		rows = matrix.length;
 		columns = matrix[0].length;
@@ -54,6 +49,7 @@ class Matrix{
 	}
 	/**
 	 * Default private constructor only for use in exception handling returns a blank matrix 0x0
+	 * Used so that when an exception is thrown the program does not crash due to not having anything returned from methods
 	 */
 	private Matrix() {
 		rows = 0;
@@ -74,7 +70,13 @@ class Matrix{
 			string.append('\n');
 		}
 		return string.toString();
-	}
+	}	
+	/**
+	 * Constructor for the Empty Matrix
+	 * @param rows
+	 * @param columns
+	 * @return Empty Matrix with dimensions Rows x Columns
+	 */
 	public static Matrix zeroMatrix(int rows, int columns) {
 		double[][] theMatrix = new double[rows][columns];
 		for(int i=0; i<rows; i++)
@@ -86,7 +88,7 @@ class Matrix{
 	/**
 	 * Makes the identity matrix of the correct dimensions
 	 * @param dimensions
-	 * @return
+	 * @return Identity Matrix with dimensions Dimensions x Dimensions
 	 */
 	public static Matrix identityMatrix(int dimensions) {
 		double[][] temp = new double[dimensions][dimensions];
@@ -150,7 +152,6 @@ class Matrix{
 						+ "%d x %d matrix must be square to calculate determinant", rows, columns);
 				throw new BadDimmesionsException(message);
 			}
-			//System.out.println("Next set of Matrices");
 			switch(rows) {
 			case 1:
 				return matrix[0][0]; 
@@ -171,8 +172,6 @@ class Matrix{
 						}
 					}
 					listOfMinors.add(sign*(new Matrix(current)).determinant()*matrix[0][i]);
-					//System.err.println("Multiplicand: " + matrix[0][i]);
-					//System.err.println(new Matrix(current));
 					sign = (sign == 1)? -1 : 1;
 				}
 			}
@@ -188,7 +187,7 @@ class Matrix{
 		}
 	}
 	/**
-	 * Multiplies a scalar to every value in a matrix
+	 * Multiplies a scalar to every value in a Matrix
 	 * @param scalar
 	 * @return New Matrix that was a product of the old Matrix and the scalar
 	 */
@@ -199,6 +198,11 @@ class Matrix{
 				temp[i][q] *= (temp[i][q]==0 || scalar==0)? 0:scalar;
 		return new Matrix(temp);
 	}
+	/**
+	 * Divides every value in a Matrix by the scalar
+	 * @param scalar
+	 * @return New Matrix that was a product of the old Matrix and 1/scalar
+	 */
 	public Matrix scalarDivision(int scalar) {
 		double[][] temp = matrix;
 		for(int i=0; i<rows; i++)
@@ -206,6 +210,11 @@ class Matrix{
 				temp[i][q] /= scalar;
 		return new Matrix(temp);
 	}
+	
+	/**
+	 * Computes the Transpose of a Matrix
+	 * @return the Transpose of the Matrix
+	 */
 	public Matrix transposeMatrix() { 
 		double[][] temp = new double[columns][rows];
 		for(int i=0; i<columns; i++)
