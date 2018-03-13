@@ -6,7 +6,7 @@ class MyInteger extends MyNumber{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private long value;
+	private final long value;
 	
 	public MyInteger(long val) {
 		value = val;
