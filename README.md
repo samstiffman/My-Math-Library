@@ -16,4 +16,5 @@ The Matrix class includes:
   * Empty Matrix constructor any size
   * Column and Row Vector constructor
   * A custom exception that is thrown when matrix operations are attempted with the wrong dimmensions
+  * Transpose Matrix
   
