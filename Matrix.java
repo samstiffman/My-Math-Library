@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 class Matrix{
-	final double[][] matrix;
-	final int rows;
-	final int columns;
-	final static DecimalFormat FORMAT = new DecimalFormat("0.#");
+	private final double[][] matrix;
+	private final int rows;
+	private final int columns;
+	private static final DecimalFormat FORMAT = new DecimalFormat("0.#");
 	
 	/**
 	 * Matrix constructor using 2d array
