@@ -18,11 +18,9 @@ class Matrix{
 		rows = matrix.length;
 		columns = matrix[0].length;
 		this.matrix = new double[rows][columns];
-		for(int i=0; i<matrix.length;i++) {
-			for(int q=0; q<matrix[0].length; q++) {
+		for(int i=0; i<matrix.length;i++) 
+			for(int q=0; q<matrix[0].length; q++) 
 				this.matrix[i][q]=matrix[i][q];
-			}
-		}
 	}
 	/**
 	 * Vector constructor
@@ -92,9 +90,8 @@ class Matrix{
 	 */
 	public static Matrix identityMatrix(int dimensions) {
 		double[][] temp = new double[dimensions][dimensions];
-		for(int i=0; i<dimensions; i++) {
+		for(int i=0; i<dimensions; i++) 
 			temp[i][i] = 1;
-		}
 		return new Matrix(temp);
 	}
 	/**
@@ -177,9 +174,8 @@ class Matrix{
 			}
 			double sum=0;
 			//adds up determinants of every matrix in the list of subdeterminants
-			for(Double element: listOfMinors) {
+			for(Double element: listOfMinors) 
 				sum += element;
-			}
 			return sum;
 		}catch(BadDimmesionsException e) {
 			e.printStackTrace();
