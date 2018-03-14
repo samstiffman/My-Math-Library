@@ -114,6 +114,20 @@ class Fraction extends MyNumber{
 		else
 			return  numerator + "/" + denominator;
 	}
+	public Fraction multiplyNumber(long a) throws denominatorZeroException {
+		return new Fraction(numerator*a, denominator);
+	}
+	public Fraction divideNumber(long a) throws denominatorZeroException {
+		return new Fraction(numerator, denominator*a);
+	}
+	public Fraction addNumber(long a) throws denominatorZeroException {
+		Fraction temp = new Fraction(a,1);
+		return addF(temp);
+	}
+	public Fraction subtractNumber(long a) throws denominatorZeroException {
+		Fraction temp = new Fraction(a,1);
+		return subtractF(temp);
+	}
 	/**
 	 * Square Root function for fractions
 	 * @param input
