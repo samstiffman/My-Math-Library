@@ -1,5 +1,7 @@
 package myMath;
 
+import myMath.Fraction.denominatorZeroException;
+
 public class ExactMath {
 	
 	public static SquareRoot exactSquareRoot(double input) {
@@ -49,9 +51,19 @@ class SquareRoot extends MyNumber{
 	 * @param in
 	 * @param out
 	 */
-	public SquareRoot(Fraction in, Fraction out) {
+	public SquareRoot(Fraction in, Fraction out) throws denominatorZeroException {
 		insidePart = in;
 		outsidePart = out;
+		//Reduces the Fraction so the square root is not in the denominator
+		if(insidePart.getDenominator() > 1) {
+			long temp = insidePart.getDenominator();
+			insidePart.setDenominator(1);
+			
+			insidePart.setNumerator(temp*insidePart.getNumerator());;
+			outsidePart.setDenominator(temp);
+			insidePart.reduce();
+			outsidePart.reduce();
+		}
 	}
 	@Override
 	public double getValue() {
