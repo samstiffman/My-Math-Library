@@ -18,3 +18,8 @@ The Matrix class includes:
   * A custom exception that is thrown when matrix operations are attempted with the wrong dimmensions
   * Transpose Matrix
   
+The Exact Math and Fraction Java files are about visual mathematics
+  * Fractions are displayed as a/b rather than their double version
+  * When used with addition and Multiplication and Division Fraction is preserved (Doesn't become a double)
+  * Square roots of fractions work and fractions are factored so there is never a root in the denominator
+  * 
