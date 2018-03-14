@@ -1,8 +1,9 @@
 # My-Math-Library
-A Java Library I made containing various mathematical concepts
+A Java Library I made containing various mathematical concepts as well as symbolic mathematics
+By symbolic mathematics I mean root(8) = 2root(2) this is similar to many calculators.
 
 Currently I have implemented:
-Matrices, Fractions, Integer/Double wrapper classes
+Matrices, Fractions
 
 The Fractions, and Integer/Double wrapper classes extend my MyNumber class which lets them interact with eachother
 The Fraction class allows fraction only operations as well as Operations with other MyNumber subclasses or Java.Lang.Number classes
