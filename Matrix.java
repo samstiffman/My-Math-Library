@@ -137,7 +137,7 @@ class Matrix{
 		return matrix[rowCoord][columnCoord];
 	}
 	/**
-	 * Returns the determinant of the matrix
+	 * Calculates the determinant of the square matrix through recursion
 	 * @return the determinant of the matrix
 	 * @throws BadDimmesionsException Throws if matrix is not square
 	 */
