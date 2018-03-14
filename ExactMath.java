@@ -1,22 +1,46 @@
 package myMath;
 
+import java.math.BigInteger;
+import java.util.ArrayList;
+
 import myMath.Fraction.denominatorZeroException;
 
 public class ExactMath {
 	
-	public static SquareRoot exactSquareRoot(double input) throws denominatorZeroException {
-		Fraction a = Fraction.rationalize(input);
-		return a.exactSquareRoot();
+	/**
+	 * Computes the square root of a double by transforming it into a fraction and then computing the square root
+	 * @param input double value
+	 * @return A cube root object 
+	 */
+	public static SquareRoot exactSquareRoot(double input){
+		Fraction a;
+		try {
+			a = Fraction.rationalize(input);
+			return a.exactSquareRoot();
+		} catch (denominatorZeroException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
-	
-	public static CubeRoot exactCubeRoot(double input) throws denominatorZeroException {
-		Fraction a = Fraction.rationalize(input);
-		return a.exactCubeRoot();
+	/**
+	 * Computes the cube root of a double by transforming it into a fraction and then computing the cube root
+	 * @param input double value
+	 * @return A cube root object 
+	 */
+	public static CubeRoot exactCubeRoot(double input) {
+		Fraction a;
+		try {
+			a = Fraction.rationalize(input);
+			return a.exactCubeRoot();
+		} catch (denominatorZeroException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}	
 	/**
-	 * Used when input already is a long
+	 * Used when input already is a long computes the exact square root directly without fraction conversion 
 	 * @param input
-	 * @return
+	 * @return square root of input
 	 */
 	public static SquareRoot exactSquareRoot(long input) {
 		long out = 1, in = (long)input;
@@ -31,9 +55,9 @@ public class ExactMath {
 		return new SquareRoot(in, out);
 	}
 	/**
-	 * Used when input already is a long
+	 * Used when input already is a long computes the exact cube root directly without fraction conversion 
 	 * @param input
-	 * @return
+	 * @return cube root of input
 	 */
 	public static CubeRoot exactCubeRoot(long input) {
 		long out = 1, in = (long)input;
@@ -46,7 +70,8 @@ public class ExactMath {
 					break;
 			}
 		return new CubeRoot(in, out);
-	}
+	}	
+	///Statistical methods
 	/**
 	 * Computes the factorial of input
 	 * @param input 
@@ -60,7 +85,7 @@ public class ExactMath {
 	}
 	/**
 	 * Permutation function uses ArrayLists to stop the program 
-	 * from having to compute massive values
+	 * from having to compute massive values far faster than normal factorial calculations
 	 * @return
 	 */
 	public static BigInteger nPr(long n, long r) {
@@ -80,7 +105,7 @@ public class ExactMath {
 	}
 	/**
 	 * Combination function uses ArrayLists to stop the program 
-	 * from having to compute massive values
+	 * from having to compute massive values far faster than normal factorial calculations
 	 * @return
 	 */
 	public static BigInteger nCr(long n, long r) {
@@ -96,11 +121,21 @@ public class ExactMath {
 			if(i<=r)
 				rFactorial.add(i);
 		}
-		nFactorial.removeAll(denominator);
-		for(long i: nFactorial) 
-			temp = temp.multiply(BigInteger.valueOf(i));
-		for(long i: rFactorial)
-			temp = temp.divide(BigInteger.valueOf(i));
+		//Removes whichever set is bigger
+		if(denominator.size()>rFactorial.size()) {
+			nFactorial.removeAll(denominator);
+			for(long i: nFactorial) 
+				temp = temp.multiply(BigInteger.valueOf(i));
+			for(long i: rFactorial)
+				temp = temp.divide(BigInteger.valueOf(i));
+		}
+		else {
+			nFactorial.removeAll(rFactorial);
+			for(long i: nFactorial) 
+				temp = temp.multiply(BigInteger.valueOf(i));
+			for(long i: denominator)
+				temp = temp.divide(BigInteger.valueOf(i));
+		}
 		return temp;
 	}
 }
