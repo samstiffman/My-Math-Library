@@ -47,9 +47,62 @@ public class ExactMath {
 			}
 		return new CubeRoot(in, out);
 	}
-	
-	
-	
+	/**
+	 * Computes the factorial of input
+	 * @param input 
+	 * @return factorial of input
+	 */
+	public static BigInteger factorial(long input) {
+		BigInteger temp = BigInteger.valueOf(input);
+		for(long i=1; i<input; i++) 
+			temp = temp.multiply(BigInteger.valueOf(i));
+		return temp;
+	}
+	/**
+	 * Permutation function uses ArrayLists to stop the program 
+	 * from having to compute massive values
+	 * @return
+	 */
+	public static BigInteger nPr(long n, long r) {
+		ArrayList<Long> nFactorial = new ArrayList<>();
+		ArrayList<Long> denominator = new ArrayList<>();
+		BigInteger temp = BigInteger.ONE;
+		long upper = n-r;
+		for(long i=1; i<=n; i++) { 
+			nFactorial.add(i);
+			if(i<=upper) 
+				denominator.add(i);
+		}
+		nFactorial.removeAll(denominator);
+		for(long i: nFactorial) 
+			temp = temp.multiply(BigInteger.valueOf(i));
+		return temp;
+	}
+	/**
+	 * Combination function uses ArrayLists to stop the program 
+	 * from having to compute massive values
+	 * @return
+	 */
+	public static BigInteger nCr(long n, long r) {
+		ArrayList<Long> nFactorial = new ArrayList<>();
+		ArrayList<Long> denominator = new ArrayList<>();
+		ArrayList<Long> rFactorial = new ArrayList<>();
+		BigInteger temp = BigInteger.ONE;
+		long upper = n-r;
+		for(long i=1; i<=n; i++) { 
+			nFactorial.add(i);
+			if(i<=upper) 
+				denominator.add(i);
+			if(i<=r)
+				rFactorial.add(i);
+		}
+		nFactorial.removeAll(denominator);
+		for(long i: nFactorial) 
+			temp = temp.multiply(BigInteger.valueOf(i));
+		for(long i: rFactorial)
+			temp = temp.divide(BigInteger.valueOf(i));
+		return temp;
+	}
 }
 class SquareRoot extends MyNumber{
 	/**
@@ -132,60 +185,5 @@ class CubeRoot extends MyNumber{
 		else
 			return "(" + outsidePart + ")*cubeRoot(" + insidePart + ")";
 	}
-	/**
-	 * Computes the factorial of input
-	 * @param input 
-	 * @return factorial of input
-	 */
-	public static BigInteger factorial(long input) {
-		BigInteger temp = BigInteger.valueOf(input);
-		for(long i=1; i<input; i++) 
-			temp = temp.multiply(BigInteger.valueOf(i));
-		return temp;
-	}
-	/**
-	 * Permutation function uses ArrayLists to stop the program 
-	 * from having to compute massive values
-	 * @return
-	 */
-	public static BigInteger nPr(long n, long r) {
-		ArrayList<Long> nFactorial = new ArrayList<>();
-		ArrayList<Long> denominator = new ArrayList<>();
-		BigInteger temp = BigInteger.ONE;
-		long upper = n-r;
-		for(long i=1; i<=n; i++) { 
-			nFactorial.add(i);
-			if(i<=upper) 
-				denominator.add(i);
-		}
-		nFactorial.removeAll(denominator);
-		for(long i: nFactorial) 
-			temp = temp.multiply(BigInteger.valueOf(i));
-		return temp;
-	}
-	/**
-	 * Combination function uses ArrayLists to stop the program 
-	 * from having to compute massive values
-	 * @return
-	 */
-	public static BigInteger nCr(long n, long r) {
-		ArrayList<Long> nFactorial = new ArrayList<>();
-		ArrayList<Long> denominator = new ArrayList<>();
-		ArrayList<Long> rFactorial = new ArrayList<>();
-		BigInteger temp = BigInteger.ONE;
-		long upper = n-r;
-		for(long i=1; i<=n; i++) { 
-			nFactorial.add(i);
-			if(i<=upper) 
-				denominator.add(i);
-			if(i<=r)
-				rFactorial.add(i);
-		}
-		nFactorial.removeAll(denominator);
-		for(long i: nFactorial) 
-			temp = temp.multiply(BigInteger.valueOf(i));
-		for(long i: rFactorial)
-			temp = temp.divide(BigInteger.valueOf(i));
-		return temp;
-	}
+
 }
