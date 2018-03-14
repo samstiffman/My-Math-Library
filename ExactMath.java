@@ -4,8 +4,21 @@ import myMath.Fraction.denominatorZeroException;
 
 public class ExactMath {
 	
-	@Deprecated
-	public static SquareRoot exactSquareRoot(double input) {
+	public static SquareRoot exactSquareRoot(double input) throws denominatorZeroException {
+		Fraction a = Fraction.rationalize(input);
+		return a.exactSquareRoot();
+	}
+	
+	public static CubeRoot exactCubeRoot(double input) throws denominatorZeroException {
+		Fraction a = Fraction.rationalize(input);
+		return a.exactCubeRoot();
+	}	
+	/**
+	 * Used when input already is a long
+	 * @param input
+	 * @return
+	 */
+	public static SquareRoot exactSquareRoot(long input) {
 		long out = 1, in = (long)input;
 		long upper = (in>4)? in/2: in;
 		for(int i=1; i<upper; i++) 
@@ -17,8 +30,12 @@ public class ExactMath {
 			}
 		return new SquareRoot(in, out);
 	}
-	@Deprecated
-	public static CubeRoot exactCubeRoot(double input) {
+	/**
+	 * Used when input already is a long
+	 * @param input
+	 * @return
+	 */
+	public static CubeRoot exactCubeRoot(long input) {
 		long out = 1, in = (long)input;
 		long upper = in/2;
 		for(int i=1; i<upper; i++) 
@@ -29,7 +46,7 @@ public class ExactMath {
 					break;
 			}
 		return new CubeRoot(in, out);
-	}	
+	}
 	
 	
 	
