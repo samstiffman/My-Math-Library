@@ -25,6 +25,7 @@ class Fraction extends MyNumber{
 			reduce();
 		}
 	}
+	
 	/**
 	 * 1 Number long cunstructor for a fractional representation of an Integer
 	 * @param num
@@ -63,6 +64,22 @@ class Fraction extends MyNumber{
 				denominator /= i;
 			}
 		}
+	}
+	/**
+	 * Turns a double into a Rational Number
+	 * @param a
+	 * @return
+	 * @throws denominatorZeroException
+	 */
+	public static Fraction rationalize(double a) throws denominatorZeroException {
+		long temp = 100;
+		a*=100;
+		final int[] temporary = {2,3,4,5,7,9,11};
+		for(int i: temporary) {
+			a*=i;
+			temp*=i;
+		}
+		return new Fraction((long)a, temp);
 	}
 	public Fraction multiplyF(Fraction a) throws denominatorZeroException {
 		Fraction newFraction = new Fraction(numerator * a.numerator, denominator * a.denominator);
@@ -114,6 +131,7 @@ class Fraction extends MyNumber{
 		else
 			return  numerator + "/" + denominator;
 	}
+		//Base operations for longs
 	public Fraction multiplyNumber(long a) throws denominatorZeroException {
 		return new Fraction(numerator*a, denominator);
 	}
@@ -127,6 +145,23 @@ class Fraction extends MyNumber{
 	public Fraction subtractNumber(long a) throws denominatorZeroException {
 		Fraction temp = new Fraction(a,1);
 		return subtractF(temp);
+	}
+	//Base operations for doubles
+	public Fraction multiplyNumber(double d) throws denominatorZeroException {
+		Fraction newNumber = rationalize(d);
+		return multiplyF(newNumber);
+	}
+	public Fraction divideNumber(double d) throws denominatorZeroException {
+		Fraction newNumber = rationalize(d);
+		return divideF(newNumber);
+	}
+	public Fraction addNumber(double d) throws denominatorZeroException {
+		Fraction newNumber = rationalize(d);
+		return addF(newNumber);
+	}
+	public Fraction subtractNumber(double d) throws denominatorZeroException {
+		Fraction newNumber = rationalize(d);
+		return subtractF(newNumber);
 	}
 	/**
 	 * Square Root function for fractions
