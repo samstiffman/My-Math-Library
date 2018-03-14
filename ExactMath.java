@@ -4,6 +4,7 @@ import myMath.Fraction.denominatorZeroException;
 
 public class ExactMath {
 	
+	@Deprecated
 	public static SquareRoot exactSquareRoot(double input) {
 		long out = 1, in = (long)input;
 		long upper = (in>4)? in/2: in;
@@ -16,6 +17,7 @@ public class ExactMath {
 			}
 		return new SquareRoot(in, out);
 	}
+	@Deprecated
 	public static CubeRoot exactCubeRoot(double input) {
 		long out = 1, in = (long)input;
 		long upper = in/2;
