@@ -54,15 +54,16 @@ class SquareRoot extends MyNumber{
 	public SquareRoot(Fraction in, Fraction out) throws denominatorZeroException {
 		insidePart = in;
 		outsidePart = out;
-		//Reduces the Fraction so the square root is not in the denominator
+		
+		long newInsideDenominator, newInsideNumerator, newOutsideDenominator;
+		//Reduces the Fraction so the square never has a denominator
 		if(insidePart.getDenominator() > 1) {
 			long temp = insidePart.getDenominator();
-			insidePart.setDenominator(1);
-			
-			insidePart.setNumerator(temp*insidePart.getNumerator());;
-			outsidePart.setDenominator(temp);
-			insidePart.reduce();
-			outsidePart.reduce();
+			newInsideDenominator = 1;
+			newInsideNumerator = insidePart.getNumerator() * temp;
+			newOutsideDenominator = outsidePart.getDenominator() * temp;
+			insidePart = new Fraction(newInsideNumerator, newInsideDenominator);
+			outsidePart = new Fraction(outsidePart.getNumerator(), newOutsideDenominator);
 		}
 	}
 	@Override
