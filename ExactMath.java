@@ -138,19 +138,21 @@ public class ExactMath {
 		}
 		return temp;
 	}
-}
-class SquareRoot extends MyNumber{
+	
+	}
+class SquareRoot {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
 	private double value;
-	private Fraction outsidePart, insidePart; 
+	private Fraction outsidePart;
+	private Fraction insidePart; 
 	
 	SquareRoot(long in, long out) {
-		insidePart = new Fraction(in);
-		outsidePart = new Fraction(out);
+		setInsidePart(new Fraction(in));
+		setOutsidePart(new Fraction(out));
 	}
 	/**
 	 * Constructor for use with fractional square roots
@@ -158,44 +160,55 @@ class SquareRoot extends MyNumber{
 	 * @param out
 	 */
 	public SquareRoot(Fraction in, Fraction out) throws denominatorZeroException {
-		insidePart = in;
-		outsidePart = out;
+		setInsidePart(in);
+		setOutsidePart(out);
 		
 		long newInsideDenominator, newInsideNumerator, newOutsideDenominator;
 		//Reduces the Fraction so the square never has a denominator
-		if(insidePart.getDenominator() > 1) {
-			long temp = insidePart.getDenominator();
+		if(getInsidePart().getDenominator() > 1) {
+			long temp = getInsidePart().getDenominator();
 			newInsideDenominator = 1;
-			newInsideNumerator = insidePart.getNumerator() * temp;
-			newOutsideDenominator = outsidePart.getDenominator() * temp;
-			insidePart = new Fraction(newInsideNumerator, newInsideDenominator);
-			outsidePart = new Fraction(outsidePart.getNumerator(), newOutsideDenominator);
+			newInsideNumerator = getInsidePart().getNumerator() * temp;
+			newOutsideDenominator = getOutsidePart().getDenominator() * temp;
+			setInsidePart(new Fraction(newInsideNumerator, newInsideDenominator));
+			setOutsidePart(new Fraction(getOutsidePart().getNumerator(), newOutsideDenominator));
 		}
 	}
-	@Override
 	public double getValue() {
 		return value;
 	}
 
 	@Override
 	public String toString() {
-		if(insidePart.getValue() == 1)
-			return outsidePart.toString();
-		else if(outsidePart.getValue() == 1)
-			return "root(" + insidePart + ")";
+		if(getInsidePart().getValue() == 1)
+			return getOutsidePart().toString();
+		else if(getOutsidePart().getValue() == 1)
+			return "root(" + getInsidePart() + ")";
 		else
-			return "(" + outsidePart + ")*root(" + insidePart + ")";
+			return "(" + getOutsidePart() + ")*root(" + getInsidePart() + ")";
 	}
+    Fraction getOutsidePart() {
+        return outsidePart;
+    }
+    void setOutsidePart(Fraction outsidePart) {
+        this.outsidePart = outsidePart;
+    }
+    Fraction getInsidePart() {
+        return insidePart;
+    }
+    void setInsidePart(Fraction insidePart) {
+        this.insidePart = insidePart;
+    }
 
 }
-class CubeRoot extends MyNumber{
+class CubeRoot {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private double value;
-	private Fraction outsidePart, insidePart; 
+	double value;
+	Fraction outsidePart, insidePart; 
 	
 	CubeRoot(long in, long out) {
 		insidePart = new Fraction(in);
@@ -205,11 +218,9 @@ class CubeRoot extends MyNumber{
 		insidePart = in;
 		outsidePart = out;
 	}
-	@Override
 	public double getValue() {
 		return value;
 	}
-
 	@Override
 	public String toString() {
 		if(insidePart.getValue() == 1)
