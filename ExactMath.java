@@ -145,9 +145,8 @@ class SquareRoot extends MyNumber{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	double value;
-	Fraction outsidePart;
-	Fraction insidePart; 
+	private double value;
+	private Fraction outsidePart, insidePart; 
 	
 	SquareRoot(long in, long out) {
 		insidePart = new Fraction(in);
@@ -195,8 +194,8 @@ class CubeRoot extends MyNumber{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	double value;
-	Fraction outsidePart, insidePart; 
+	private double value;
+	private Fraction outsidePart, insidePart; 
 	
 	CubeRoot(long in, long out) {
 		insidePart = new Fraction(in);
