@@ -224,8 +224,8 @@ class Fraction extends MyNumber{
 		try {
 			SquareRoot num = ExactMath.exactSquareRoot(numerator);
 			SquareRoot denom = ExactMath.exactSquareRoot(denominator);
-			Fraction out = num.outsidePart.divideF(denom.outsidePart);
-			Fraction in = num.insidePart.divideF(denom.insidePart);
+			Fraction out = num.getOutsidePart().divideF(denom.getOutsidePart());
+			Fraction in = num.getInsidePart().divideF(denom.getInsidePart());
 			
 			return new SquareRoot(in, out);
 		} catch (denominatorZeroException e) {
