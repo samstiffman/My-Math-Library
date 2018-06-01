@@ -140,7 +140,7 @@ public class ExactMath {
 	}
 	
 	}
-class SquareRoot {
+class SquareRoot extends MyNumber{
 	/**
 	 * 
 	 */
@@ -201,7 +201,7 @@ class SquareRoot {
     }
 
 }
-class CubeRoot {
+class CubeRoot extends MyNumber{
 	/**
 	 * 
 	 */
