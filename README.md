@@ -1,6 +1,6 @@
 # My-Math-Library
-A Java Library I made containing various mathematical concepts as well as symbolic mathematics
-By symbolic mathematics I mean root(8) = 2root(2) this is similar to many calculators.
+A Java Library I made containing various mathematical concepts as well as some ymbolic mathematical symplification
+By symbolic mathematics I mean root(8) => 2root(2) 
 
 Currently I have implemented:
 Matrices, Fractions
@@ -25,3 +25,5 @@ The Exact Math and Fraction Java files are about visual mathematics
   * Square roots of fractions work and fractions are factored so there is never a root in the denominator
   * Doubles can be turned into rational numbers/fractions
   * Square roots of doubles convert them to rational numbers
+
+Last Edit: June 1, 2018
